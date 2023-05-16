@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>List All Cases</title>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <nav class="left">
+      </nav>
+      <div>
+        <a href="/admin/dashboard" class="logo">
+          <p th:utext="${session.userdetails.names}">
+          </p>
+        </a>
+      </div>
+      <nav class="right">
+        <a href="/logout" class="button alt">Log out</a>
+      </nav>
+    </header>
+
+    <div class="container mt-5">
+      <div class="row mx-0">
+        <div class="col">
+          <h2 class="mb-0">Case List</h2>
+        </div>
+        <div class="col-auto">
+          <div>
+            <a class="btn btn-primary" th:href="@{/admin/case/add}">
+              Add New Case
+            </a>
+          </div>
+        </div>
+      </div>
+      <h2 th:if="${#lists.isEmpty(cases)}" style="text-align: center">
+        You haven't added any cases yet
+      </h2>
+      <table th:if="${not #lists.isEmpty(cases)}" class="border">
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Case Owner</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Due Date</th>
+          <th>Edit</th>
+          <th
+            th:if="${session.userdetails.role == T(com.team2.inventory.model.Role).ADMIN}"
+          >
+            Delete
+          </th>
+        </tr>
+        <tr th:each="case:${cases}" class="table-row">
+          <td th:text="${case.id}"></td>
+          <td th:text="${case.type}"></td>
+          <td th:text="${case.names}"></td>
+          <td th:text="${case.email}"></td>
+          <td th:text="${case.phone_number}"></td>
+          <td th:text="${case.dueDate}"></td>
+          <td>
+            <a
+              href="EditCase.html"
+              th:href="@{/admin/case/edit/}+${case.id}"
+              >Edit</a>
+          </td>
+          <td
+            th:if="${session.userdetails.role == T(com.team2.inventory.model.Role).ADMIN}"
+          >
+            <a
+              href="DeleteCase.html"
+              th:href="@{/admin/case/delete/}+${case.id}"
+              >Delete</a
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

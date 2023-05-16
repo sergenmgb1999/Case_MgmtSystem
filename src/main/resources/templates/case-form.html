@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css"/>
+    <title>Case Form</title>
+</head>
+
+<body>
+<!-- Header -->
+<header id="header">
+    <nav class="left">
+        <a href="#menu"><span>Menu</span></a>
+    </nav>
+    <a href="/admin/dashboard" class="logo"
+    ><p
+            th:utext="${session.userdetails.names}"
+    ></p
+    ></a>
+    <nav class="right">
+        <a href="/logout" class="button alt">Log out</a>
+    </nav>
+</header>
+
+<h2 style="text-align: center">Case Form</h2>
+<form
+        action="#"
+        th:object="${case}"
+        th:action="@{/admin/case/save}"
+        method="post"
+        enctype="multipart/form-data"
+>
+    <table style="width: 50%; margin-left: auto; margin-right: auto">
+        <tr>
+            <!--grey-->
+        </tr>
+        <tr>
+            <th>
+                <input
+                        class="form-control"
+                        type="hidden"
+                        th:field="*{id}"
+                        th:value="*{id}"
+                />
+                Type:
+            </th>
+            <td>
+                <input
+                        class="form-control"
+                        type="text"
+                        th:field="*{type}"
+                        th:value="*{type}"
+                        required
+                />
+            </td>
+        </tr>
+        <tr>
+            <!--grey-->
+        </tr>
+        <tr>
+            <th>Due Date</th>
+            <td>
+                <input
+                        class="form-control"
+                        type="date"
+                        th:field="*{dueDate}"
+                        th:value="*{dueDate}"
+                        required
+                />
+            </td>
+        </tr>
+        <tr>
+            <!--grey-->
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>
+                <input
+                        class="form-control"
+                        type="text"
+                        th:field="*{description}"
+                        th:value="*{description}"
+                        required
+                />
+            </td>
+        </tr>
+        <tr>
+            <!--grey-->
+        </tr>
+        <tr>
+            <th>Names</th>
+            <td>
+                <input
+                        class="form-control"
+                        type="text"
+                        th:field="*{names}"
+                        th:value="*{names}"
+                        required
+                />
+            </td>
+        </tr>
+        <tr>
+            <!--grey-->
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>
+                <input
+                        class="form-control"
+                        type="text"
+                        th:field="*{phone_number}"
+                        th:value="*{phone_number}"
+                        required
+                />
+            </td>
+        </tr>
+        <tr>
+            <!--grey-->
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>
+                <input
+                        class="form-control"
+                        type="text"
+                        th:field="*{email}"
+                        th:value="*{email}"
+                        required
+                />
+            </td>
+        </tr>
+        <tr>
+            <!--grey-->
+        </tr>
+        <tr>
+            <th>ID/Passport</th>
+            <td>
+                <input
+                        class="form-control"
+                        type="text"
+                        th:field="*{identification}"
+                        th:value="*{identification}"
+                        required
+                />
+            </td>
+        </tr>
+        <tr>
+            <!--grey-->
+        </tr>
+        <tr>
+            <th>Case File</th>
+            <td>
+                <input
+                        class="form-control"
+                        type="file"
+                        name="case_file"
+                        required
+                />
+            </td>
+        </tr>
+
+        <tr>
+            <!--grey-->
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Save"/> &nbsp; &nbsp;
+                <input type="reset" value="Reset"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<table
+        style="width: 50%; margin-left: auto; margin-right: auto; border: white"
+>
+    <tr></tr>
+    <tr>
+        <td style="text-align: center; font-weight: bold">
+            <a th:href="@{/all/case/list/}">Return to Case List</a>
+        </td>
+        <td style="text-align: center; font-weight: bold">
+            <a th:href="@{/admin/case/delete/}+${case.id}"
+            >Delete Case</a
+            >
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

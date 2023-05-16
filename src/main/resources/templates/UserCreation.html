@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Register New Employee</title>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <nav class="left">
+        <a href="#menu"><span>Menu</span></a>
+      </nav>
+      <a href="/admin/dashboard" class="logo"
+        ><p
+          th:utext="${session.userdetails.names}"
+        ></p
+      ></a>
+      <nav class="right">
+        <a href="/logout" class="button alt">Log out</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2 style="text-align: center">Register New Employee</h2>
+      <form
+        class="row"
+        th:object="${user}"
+        th:action="@{/admin/saveuser}"
+        method="post"
+      >
+        <div>
+          <fieldset>
+            <input type="hidden" th:field="*{id}" />
+          </fieldset>
+        </div>
+        <div class="col-12 col-md-6">
+          <fieldset>
+            <label for="validationDefault01" class="form-label">
+              Names
+            </label>
+            <input
+              type="text"
+              th:field="*{names}"
+              class="form-control"
+              id="validationDefault01"
+              placeholder="Enter Names"
+              required
+            />
+            <p
+              th:if="${#fields.hasErrors('names')}"
+              th:errors="*{names}"
+            ></p>
+          </fieldset>
+        </div>
+        <div class="col-12 col-md-6">
+          <fieldset>
+            <label for="validationDefault03" class="form-label">Username</label>
+            <input
+              type="text"
+              th:field="*{username}"
+              class="form-control"
+              id="validationDefault03"
+              placeholder="Enter Username"
+              required
+            />
+            <p
+              th:if="${#fields.hasErrors('username')}"
+              th:errors="*{username}"
+            ></p>
+          </fieldset>
+        </div>
+
+        <div class="col-md-6 col-12">
+          <fieldset>
+            <label for="validationDefault04" class="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              th:field="*{password}"
+              class="form-control"
+              id="validationDefault04"
+              placeholder="Enter Password"
+              required
+            />
+            <p
+              th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}"
+            ></p>
+          </fieldset>
+        </div>
+        <div class="col-md-6 col-12">
+          <fieldset>
+            <label class="form-label"> Email </label>
+            <input
+              type="email"
+              th:field="*{email}"
+              class="form-control"
+              placeholder="Enter Email"
+              required
+            />
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+          </fieldset>
+        </div>
+        <div class="col-md-6 col-12">
+          <fieldset>
+            <label for="" class="form-label"> Role </label>
+            <select th:field="*{Role}">
+              <option value="ADMIN">Admin</option>
+              <option value="EMPLOYEE">Employee</option>
+            </select>
+            <p th:if="${#fields.hasErrors('Role')}" th:errors="*{Role}"></p>
+          </fieldset>
+        </div>
+
+        <div class="col-12">
+          <fieldset class="d-flex justify-content-end">
+            <button type="reset" class="mx-3 px-5 btn btn-secondary">
+              Reset
+            </button>
+            <button type="submit" class="px-5 btn btn-danger">Submit</button>
+          </fieldset>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

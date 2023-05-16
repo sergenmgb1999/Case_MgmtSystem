@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>List All Employees</title>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <nav class="left">
+        <a href="#menu"><span>Menu</span></a>
+      </nav>
+      <a href="/admin/dashboard" class="logo"
+      >
+        <p th:utext="${session.userdetails.names}"
+        ></p
+        ></a>
+      <nav class="right">
+        <a href="/logout" class="button alt">Log out</a>
+      </nav>
+    </header>
+    <br />
+
+    <div class="container">
+      <div class="row mx-0">
+        <div class="col">
+          <h2>Employee List</h2>
+        </div>
+        <div class="col-auto" th:if="${session.userdetails.role == T(com.team2.inventory.model.Role).ADMIN}">
+          <a href="/admin/adduser" class="btn btn-primary"
+          >Register New Employee</a
+          >
+        </div>
+      </div>
+      <br />
+
+      <div>
+        <table th:if="${not #lists.isEmpty(users)}" class="border">
+          <tr>
+            <th>ID</th>
+            <th>Names</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>View</th>
+            <th th:if="${session.userdetails.role == T(com.team2.inventory.model.Role).ADMIN}">Edit</th>
+            <th th:if="${session.userdetails.role == T(com.team2.inventory.model.Role).ADMIN}">Delete</th>
+          </tr>
+
+          <tr th:each="user:${users}">
+            <td th:text="${user.id}">ID</td>
+            <td th:text="${user.names}">Names</td>
+            <td th:text="${user.username}">Username</td>
+            <td th:text="${user.email}">Email</td>
+            <td th:text="${user.Role}">Role</td>
+            <td>
+              <a
+                href="ShowUserDetail.html"
+                th:href="@{/admin/showuser/}+${user.id}"
+              >
+                View
+              </a>
+            </td>
+
+            <td th:if="${session.userdetails.role == T(com.team2.inventory.model.Role).ADMIN}">
+              <a href="EditUser.html" th:href="@{/admin/edit/} + ${user.id}">
+                Edit
+              </a>
+            </td>
+            <td th:if="${session.userdetails.role == T(com.team2.inventory.model.Role).ADMIN}">
+              <a href="DeleteUser.html" th:href="@{/admin/delete/}+${user.id}">
+                Delete
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

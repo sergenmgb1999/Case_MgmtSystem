@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="InventoryMSApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="com.team2.inventory.InventoryMSApplication" />
+    <module name="inventory-ms" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.team2.inventory.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

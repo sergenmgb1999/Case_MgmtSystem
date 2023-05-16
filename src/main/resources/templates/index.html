@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Case Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+
+<body>
+<div th:fragment="header" id="header"></div>
+<body>
+<!-- Header -->
+<header id="header">
+    <a href="/index">Case Management System</a>
+    <nav class="right">
+        <a href="/register" class="button alt">Register</a>
+        <a href="/login" class="button alt">Log in</a>
+    </nav>
+</header>
+
+
+<!-- Banner -->
+<section id="banner" class="container mt-3">
+    <div class="content">
+        <h1>
+            Manage your cases easily.
+        </h1>
+    </div>
+</section>
+
+<!-- Three -->
+<section id="three" class="wrapper">
+    <div class="inner flex flex-3">
+        <div class="flex-item box">
+            <div class="content">
+                <h3>
+                    Case Management
+                </h3>
+                <p>
+                    Manage your Cases and their status.
+                </p>
+            </div>
+        </div>
+        <div class="flex-item box">
+            <div class="content">
+                <h3>
+                    Employee Management
+                </h3>
+                <p>
+                    Manage Employees and their roles.
+                </p>
+            </div>
+        </div>
+        <div class="flex-item box">
+            <div class="content">
+                <h3>
+                    Easy to use
+                </h3>
+                <p>
+                    Our web app is easy to use and understand.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/skel.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+</body>
+
+</body>
+</html>
